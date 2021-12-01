@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- rules是校验规则 -->
-    <el-form rules="rules" ref="form" :model="loginForm" class="loginContainer">
+    <el-form :rules="rules" ref="loginForm" :model="loginForm" class="loginContainer">
       <h3 class="loginTitle">系统登录</h3>
       <!-- 使用prop与data中rules下的username对应 -->
       <el-form-item prop="username">
@@ -43,7 +43,15 @@ export default {
   },
   methods: {
     submitLogin() {
-      alert('11111')
+      // 表单验证
+      this.$refs.loginForm.validate((valid) => {
+        if(valid) {
+          alert('submit')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }
