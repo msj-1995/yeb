@@ -48,7 +48,7 @@ export default {
         if(valid) {
           alert('submit')
         } else {
-          console.log('error submit!!')
+          this.$message.error('字段不能为空哦')
           return false
         }
       })
