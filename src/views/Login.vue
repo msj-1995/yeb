@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-form ref="form" :model="loginForm" class="loginContainer">
+    <!-- rules是校验规则 -->
+    <el-form rules="rules" ref="form" :model="loginForm" class="loginContainer">
       <h3 class="loginTitle">系统登录</h3>
       <el-form-item>
         <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名"></el-input>
@@ -29,7 +30,12 @@ export default {
         code: ''
       },
       captchaUrl: '',
-      checked: true
+      checked: true,
+      // 校验规则
+      rules: {
+        // username为必填项，blue为失去焦点时触发，为空显示的信息为message后的字符串
+        username: [{required: true, message: "请输入用户名", trigger: 'blur'}]
+      }
     }
   },
   methods: {
