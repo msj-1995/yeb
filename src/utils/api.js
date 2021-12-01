@@ -1,6 +1,7 @@
 import axios from 'axios'
 // 单独引入element-ui的message
 import {Message} from 'element-ui'
+import router from '../router'
 
 // 使用axios提供的拦截器拦截请求和响应,为了方便在请求或响应时失败统一调用
 // success表示成功访问到后端的接口,onRejected(error)表示没有访问到后端接口
@@ -28,5 +29,16 @@ axios.interceptors.response.use(success=>{
     Message.error({message: "服务找不到..."})
   } else if(error.response.code == 403) {
     Message.error({message: "权限不足，请联系管理员..."})
-  } else if(error.response.code )
+  } else if(error.response.code == 401) {
+    Message.error({message: "尚未登录，请登录"})
+    // 重定向到登录页
+    router.replace('/')
+  } else {
+    if(error.response.data.message) {
+      Message.error({message: error.response.data.message})
+    } else {
+      Message.error({message: '位置错误...'})
+    }
+  }
+  return;
 })
