@@ -13,7 +13,7 @@
         <img :src="captchaUrl" alt="">
       </el-form-item>
       <el-checkbox v-model="checked" class="loginRemember">记住我</el-checkbox>
-      <el-button type="primary" style="width:100%">登录</el-button>
+      <el-button type="primary" style="width:100%" @click="submitLogin">登录</el-button>
     </el-form>
   </div>
 </template>
@@ -30,6 +30,11 @@ export default {
       },
       captchaUrl: '',
       checked: true
+    }
+  },
+  methods: {
+    submitLogin() {
+      alert('11111')
     }
   }
 }
