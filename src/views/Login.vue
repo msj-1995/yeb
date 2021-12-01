@@ -3,13 +3,14 @@
     <!-- rules是校验规则 -->
     <el-form rules="rules" ref="form" :model="loginForm" class="loginContainer">
       <h3 class="loginTitle">系统登录</h3>
-      <el-form-item>
+      <!-- 使用prop与data中rules下的username对应 -->
+      <el-form-item prop="username">
         <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <el-input type="password" auto-complete="false" v-model="loginForm.password" placeholder="请输入密码"></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="code">
         <el-input type="text" auto-complete="false" v-model="loginForm.code" placeholder="点击图片更换验证码" style="width: 250px;margin-right: 5px"></el-input>
         <img :src="captchaUrl" alt="">
       </el-form-item>
@@ -34,7 +35,9 @@ export default {
       // 校验规则
       rules: {
         // username为必填项，blue为失去焦点时触发，为空显示的信息为message后的字符串
-        username: [{required: true, message: "请输入用户名", trigger: 'blur'}]
+        username: [{required: true, message: "请输入用户名", trigger: 'blur'}],
+        password: [{required: true, message: "请输入密码", trigger: 'blur'}],
+        code: [{required: true, message: '请输入验证码', trigger: 'blur'}]
       }
     }
   },
